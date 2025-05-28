@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { addTask, clearAll, deleteTask } from "./store";
 import { useState } from "react";
+import {addTask, clearAll, deleteTask} from "./features/tasks/taskSlice";
 
 function App() {
   const [task, setTask] = useState("");
