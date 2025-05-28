@@ -1,4 +1,8 @@
+import { useSelector } from "react-redux";
+
 function App() {
+  const state = useSelector(state => state.tasksReducer.task)
+  
   return (
     <>
       <div className="w-[400px] sm:w-[500px] mx-auto  rounded-xl bg-slate-400 p-8 ">
@@ -36,7 +40,7 @@ function App() {
             Fetch Tasks
           </button>
         </div>
-        {/* <ul>
+        <ul>
           {state.map((task, index) => {
             return (
               <li
@@ -44,7 +48,7 @@ function App() {
                 className="flex justify-between items-center   bg-white p-3 mb-2 rounded-lg"
               >
                 <div className="text flex  justify-center items-start gap-1 sm:gap-2">
-                  <p className="text-black font-bold">{index + 1} </p>
+                  <p className="text-black font-bold">{index + 1}:</p>
                   <h1 className="text-md font-bold text-black">{task}</h1>
                 </div>
                 <div className="delete_icon">
@@ -58,7 +62,7 @@ function App() {
               </li>
             );
           })}
-        </ul> */}
+        </ul>
       </div>
     </>
   );
