@@ -1,8 +1,19 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addTask, deleteTask } from "./store";
+import { useState } from "react";
 
 function App() {
-  const state = useSelector(state => state.tasksReducer.task)
-  
+  const [task, setTask] = useState("");
+  const state = useSelector((state) => state.tasksReducer.task);
+  const dispatch = useDispatch();
+  const handleSubmitForm = (e) => {
+    e.preventDefault();
+    setTask("")
+    return dispatch(addTask(task));
+  };
+  const handleDeleteTask = (index) => {
+    return dispatch(deleteTask(index))
+  }
   return (
     <>
       <div className="w-[400px] sm:w-[500px] mx-auto  rounded-xl bg-slate-400 p-8 ">
@@ -13,21 +24,21 @@ function App() {
           <form
             action=""
             className="flex justify-around items-center"
-            // onSubmit={handleSubmitForm}
+            onSubmit={handleSubmitForm}
           >
             <div className="input w-[70%]">
               <input
                 type="text"
                 placeholder="Set your task"
                 className="w-full py-3 rounded-full px-6 outline-none bg-slate-200 text-black"
-                // value={task}
-                // onChange={(e) => setTask(e.target.value)}
+                value={task}
+                onChange={(e) => setTask(e.target.value)}
               />
             </div>
             <div className="button ">
               <button
                 type="submit"
-                className="bg-blue-900 p-3 rounded-xl font-bold"
+                className="bg-blue-900 p-3 rounded-xl font-bold cursor-pointer"
               >
                 Add Task
               </button>
@@ -53,8 +64,8 @@ function App() {
                 </div>
                 <div className="delete_icon">
                   <button
-                    className="bg-red-600 p-2 rounded-full text-white font-bold"
-                    // onClick={() => handleDeleteTask(index)}
+                    className="bg-red-600 p-2 rounded-full text-white font-bold cursor-pointer"
+                    onClick={() => handleDeleteTask(index)}
                   >
                     Delete
                   </button>
@@ -62,6 +73,7 @@ function App() {
               </li>
             );
           })}
+          <button className="w-full h-8 cursor-pointer text-white bg-blue-800 rounded-2xl mx-auto ">Clear All</button>
         </ul>
       </div>
     </>

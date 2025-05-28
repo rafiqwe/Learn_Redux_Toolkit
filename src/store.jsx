@@ -12,7 +12,7 @@ const tasksReducer = createSlice({
       state.task.push(action.payload);
     },
     deleteTask(state, action) {
-      state.task = state.task.filler(
+      state.task = state.task.filter(
         (curElem, index) => index !== action.payload
       );
     },
@@ -20,15 +20,16 @@ const tasksReducer = createSlice({
 });
 console.log(tasksReducer);
 
-const { addTask, deleteTask } = tasksReducer.actions;
+export const { addTask, deleteTask } = tasksReducer.actions;
 export const store = configureStore({
   reducer: {
     tasksReducer: tasksReducer.reducer,
   },
 });
-// add some data 
+// add some data
 console.log(store.dispatch(addTask("I am a developer")));
 console.log(store.dispatch(addTask("I Know react ")));
+console.log(store.dispatch(deleteTask(1)));
 
 // Log all data
 console.log(store.getState());
