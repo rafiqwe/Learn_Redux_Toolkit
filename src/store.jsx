@@ -21,7 +21,6 @@ const tasksReducer = createSlice({
 console.log(tasksReducer);
 
 const { addTask, deleteTask } = tasksReducer.actions;
-
 export const store = configureStore({
   reducer: {
     tasksReducer: tasksReducer.reducer,
